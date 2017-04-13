@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Person>
+
+<div>
+    <table width="100%">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Location
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>
+                    @person.Name
+                </td>
+                <td>
+                    @person.Location
+                </td>
+            </tr>
+
+        }
+
+    </table>
+</div>

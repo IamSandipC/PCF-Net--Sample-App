@@ -1,11 +1,10 @@
 ---
 applications:
-- name: peopleservice
-  memory: 1G
-  host: gtopeopleservice
+- name: peopleui
+  memory: 512M
+  host: gtopeopleui
   env:
     ASPNETCORE_ENVIRONMENT: Production
   services:
    - peopleConfig
    - peopleRegistry
-   - peopledb

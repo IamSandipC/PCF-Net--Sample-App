@@ -1,0 +1,5 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/PeopleService/src/PeopleService/bin/Debug/netcoreapp1.1

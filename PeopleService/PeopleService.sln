@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PeopleService", "src\PeopleService\PeopleService.xproj", "{463C4053-8A5F-446F-8BE3-3AF6B7C92142}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PeopleUI", "src\PeopleUI\PeopleUI.xproj", "{DAF5140D-E285-430E-9437-1C9B3C93D13E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +24,16 @@ Global
 		{463C4053-8A5F-446F-8BE3-3AF6B7C92142}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{463C4053-8A5F-446F-8BE3-3AF6B7C92142}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{463C4053-8A5F-446F-8BE3-3AF6B7C92142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAF5140D-E285-430E-9437-1C9B3C93D13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAF5140D-E285-430E-9437-1C9B3C93D13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAF5140D-E285-430E-9437-1C9B3C93D13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAF5140D-E285-430E-9437-1C9B3C93D13E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{463C4053-8A5F-446F-8BE3-3AF6B7C92142} = {F1ED0410-F5F7-4502-A014-9418F3E4130E}
+		{DAF5140D-E285-430E-9437-1C9B3C93D13E} = {F1ED0410-F5F7-4502-A014-9418F3E4130E}
 	EndGlobalSection
 EndGlobal

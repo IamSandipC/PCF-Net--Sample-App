@@ -4,23 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using PeopleService.Models;
-using Microsoft.EntityFrameworkCore;
 using Pivotal.Extensions.Configuration;
+using PeopleUI.Services;
 using Pivotal.Discovery.Client;
-using Steeltoe.CloudFoundry.Connector.MySql.EFCore;
 
-namespace PeopleService
+
+namespace PeopleUI
 {
     public class Startup
     {
-
-
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -31,24 +26,18 @@ namespace PeopleService
                 .AddConfigServer(env);
 
             Configuration = builder.Build();
-            environment = env;
         }
 
         public IConfigurationRoot Configuration { get; }
-        private IHostingEnvironment environment;
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add framework services.
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddMvc();
-
             services.AddDiscoveryClient(Configuration);
-
-            //services.AddEntityFramework()
-            //       .AddDbContext<PeopleContext>(options => options.UseInMemoryDatabase());
-
-            services.AddDbContext<PeopleContext>(options => options.UseMySql(Configuration));
+            services.AddSingleton<IPeopleService, PeopleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,21 +46,30 @@ namespace PeopleService
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+           
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
+           
+
+            app.UseStaticFiles();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" });
-
-                routes.MapRoute(
-                    name: "api",
-                    template: "{controller}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
 
             app.UseDiscoveryClient();
-            loggerFactory.CreateLogger("Test").LogInformation("Config coming from Config Server : " + Configuration["AppSettings:SiteTitle"]);
-            Sample.InitializeMusicStoreDatabase(app.ApplicationServices).Wait();
         }
     }
 }
