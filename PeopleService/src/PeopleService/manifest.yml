@@ -1,0 +1,9 @@
+---
+applications:
+- name: peopleservice
+  memory: 1G
+  host: gtopeopleservice
+  env:
+    ASPNETCORE_ENVIRONMENT: Production
+  services:
+   - peopleConfig
